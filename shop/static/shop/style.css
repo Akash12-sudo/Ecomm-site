@@ -1,0 +1,28 @@
+
+.card-img-top{
+    height: 10rem;
+    width: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card{
+    text-align: center;
+}
+
+.card-title{
+    font-weight: bold;
+}
+
+.card-text{
+    color: rgb(68, 158, 68);
+    font-weight: bold;
+}
+
+.card-text:hover{
+    color: rgb(236, 34, 34);
+}
+
+.navbar navbar-expand-lg navbar-dark{
+    color: rgb(5, 2, 53);
+}
