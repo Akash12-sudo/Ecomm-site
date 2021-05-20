@@ -1,6 +1,14 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from .models import Order, Product
 from django.core.paginator import Paginator
+from django.http import HttpResponse, JsonResponse, response
+from rest_framework import serializers
+from .serializers import ProductSerializer
+from .models import Product
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import viewsets
 
 # Create your views here.
 
@@ -45,3 +53,41 @@ def checkout(request):
 
 
     return render(request, 'shop/checkout.html')
+
+
+
+class CreateProduct(viewsets.ModelViewSet):
+
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+class UpdateProduct(viewsets.ModelViewSet):
+
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.queryset.get(pk=kwargs.get('pk'))
+        serializer = self.serializer_class(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
+
+@api_view(['DELETE'])
+def DeleteProduct(request, pk):
+
+    product = Product.objects.get(id=pk)
+    product.delete()
+
+    return Response("Item deleted")
+    
+
+
+    
+
+
+
+

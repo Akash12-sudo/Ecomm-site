@@ -36,18 +36,7 @@
       <div class="row">
         <div class="col-md-12 mt-3">
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Navbar w/ text</a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarText"
-              aria-controls="navbarText"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
+
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -193,13 +182,13 @@
     DisplayCart(cart);
     function DisplayCart(cart){
         let cartString = "";
-        cartString += "<h5>Your Cart</h5>";
+        cartString += "<b><h5>Your Cart</h5></b>";
         let cartIndex = 1;
 
         let cartObjects = JSON.parse(localStorage.getItem('cart'));
         for(item in cartObjects)
         {
-            cartString += cartObjects[item][1] + " Qty: " + cartObjects[item][0] + "<br/>"
+            cartString += cartObjects[item][1] + " <b>Qty:</b> " + cartObjects[item][0] + "<br/>"
         }
 
         cartString += "<br/><a href='/checkout'><button class='btn btn-warning' id='checkout'>Checkout</button></a>";
